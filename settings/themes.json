@@ -51,8 +51,8 @@
     "captionRight": 640,
     "captionBottom": 660,
     "captionTop": null,
-    "waveTop": 550,
-    "framesPerSecond": 60
+    "waveTop": 600,
+    "framesPerSecond": 30
   },
   "Line": {
     "backgroundColor": "#edc951",
