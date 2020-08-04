@@ -43,7 +43,7 @@
     "foregroundColor": "#37baff"
   },
   "Rounded bars with bottom left text": {
-    "pattern": "roundBars",
+    "pattern": "bars",
     "foregroundColor": "#37baff",
     "backgroundImage": "sample.png",
     "captionAlign": "left",
@@ -52,7 +52,7 @@
     "captionBottom": 660,
     "captionTop": null,
     "waveTop": 600,
-    "framesPerSecond": 30
+    "framesPerSecond": 25
   },
   "Line": {
     "backgroundColor": "#edc951",
