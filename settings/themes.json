@@ -40,16 +40,18 @@
   },
   "Bars": {
     "pattern": "bars",
-    "foregroundColor": "#d84a4a"
+    "foregroundColor": "#37baff"
   },
   "Rounded bars with bottom left text": {
     "pattern": "roundBars",
-    "foregroundColor": "#d84a4a",
+    "foregroundColor": "#37baff",
+    "backgroundImage": "sample.png",
     "captionAlign": "left",
     "captionLeft": 60,
     "captionRight": 640,
     "captionBottom": 660,
-    "captionTop": null
+    "captionTop": null,
+    "waveTop": 650
   },
   "Line": {
     "backgroundColor": "#edc951",
