@@ -19,7 +19,7 @@ function validate(req, res, next) {
 
   }
 
-  if (!req.file || !req.file.filename && !req.body.s3Audio) {
+  if ( (!req.file || !req.file.filename) && !req.body.s3Audio) {
     return res.status(500).send("No valid audio received.");
   }
 
