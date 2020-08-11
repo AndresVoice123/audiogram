@@ -45,7 +45,7 @@ if (serverSettings.maxUploadSize) {
 }
 
 // On submission, check upload, validate input, and start generating a video
-app.post("/submit/", [multer(fileOptions).single("audio"), render.validate, render.route]);
+app.post("/submit/", [render.validate, render.route]);
 
 // If not using S3, serve videos locally
 if (!serverSettings.s3Bucket) {
