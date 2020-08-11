@@ -9,6 +9,8 @@ redis-server --yes
 
 RUN ln -s `which nodejs` /usr/bin/node
 
+RUN apt-get install vim --yes
+
 # Non-privileged user
 RUN useradd -m audiogram
 USER audiogram
@@ -20,3 +22,4 @@ WORKDIR /home/audiogram/audiogram
 
 # Install dependencies
 RUN npm install
+

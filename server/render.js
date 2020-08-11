@@ -35,7 +35,7 @@ function validate(req, res, next) {
 }
 
 function route(req, res) {
-
+  console.log('esta es la información de la petición al inicio del procesamiento', req);
   var id = req.file.destination.split(path.sep).pop();
 
   transports.uploadAudio(path.join(req.file.destination, "audio"), "audio/" + id,function(err) {
