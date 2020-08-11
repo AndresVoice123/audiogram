@@ -24,6 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "^2.2.39",
+    "body-parser": "^1.19.0",
     "browserify": "^13.0.0",
     "canvas": "git+https://github.com/chearon/node-canvas.git#12971f64a66b",
     "compression": "^1.6.1",

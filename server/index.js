@@ -4,7 +4,8 @@ var express = require("express"),
     path = require("path"),
     multer = require("multer"),
     uuid = require("uuid"),
-    mkdirp = require("mkdirp");
+    mkdirp = require("mkdirp"),
+    bodyParser = require('body-parser');
 
 // Routes and middleware
 var logger = require("../lib/logger/"),
@@ -20,6 +21,10 @@ var app = express();
 
 app.use(compression());
 app.use(logger.morgan());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: 'application/json' }));
 
 // Options for where to store uploaded audio and max size
 var fileOptions = {
