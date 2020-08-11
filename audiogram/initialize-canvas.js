@@ -13,8 +13,12 @@ function initializeCanvas(theme, cb) {
     return cb(null, renderer);
   }
 
-  if (theme.backgroundImage) {
-    transports.downloadAudio("images/" + theme.backgroundImage, path.join(__dirname, "..", "settings", "backgrounds", theme.backgroundImage), function(err, data) {
+  if (theme.backgroundImageUrl) {
+    const key = !(theme.imageBucket || theme.imagePath) ? "images/" + theme.backgroundImage : {
+      path: theme.imagePath,
+      bucket: theme.imageBucket,
+    };
+    transports.downloadAudio(key, path.join(__dirname, "..", "settings", "backgrounds", theme.backgroundImage), function(err, data) {
       if (err) {
         throw err;
       }

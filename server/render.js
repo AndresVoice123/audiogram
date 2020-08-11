@@ -9,7 +9,7 @@ function validate(req, res, next) {
 
   try {
     console.log('este es el cuerpo', req.body);
-    if(!req.body.s3Audio) {
+    if(!(req.body.theme.audioUrl && req.body.theme.backgroundImageUrl)) {
       req.body.theme = JSON.parse(req.body.theme);
     }
 
@@ -37,7 +37,7 @@ function validate(req, res, next) {
 }
 
 function route(req, res) {
-  var id = req.body.s3Audio ? req.body.s3Audio.id : req.file.destination.split(path.sep).pop();
+  var id = req.body.theme.id ? req.body.theme.id : req.file.destination.split(path.sep).pop();
   if(!req.body.s3Audio) {
     transports.uploadAudio(path.join(req.file.destination, "audio"), "audio/" + id,function(err) {
       if (err) {

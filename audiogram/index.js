@@ -150,8 +150,13 @@ Audiogram.prototype.render = function(cb) {
   // Set up tmp directory
   q.defer(mkdirp, this.frameDir);
 
+  const theme = this.settings.theme;
+  const key = !(theme.audioBucket || theme.audioPath) ? "audio/" + this.id : {
+    path: theme.audioPath,
+    bucket: theme.audioBucket,
+  };
   // Download the stored audio file
-  q.defer(transports.downloadAudio, "audio/" + this.id, this.audioPath);
+  q.defer(transports.downloadAudio, key, this.audioPath);
 
   // If the audio needs to be clipped, clip it first and update the path
   if (this.settings.start || this.settings.end) {
