@@ -43,15 +43,15 @@ function route(req, res) {
       if (err) {
         throw err;
       }
-      addJob(req,res);
+      addJob(req,res, id);
     });
   } else {
-    addJob(req,res);
+    addJob(req,res, id);
   }
 
 };
 
-function addJob(req, res) {
+function addJob(req, res, id) {
   // Queue up the job with a timestamp
   transports.addJob(_.extend({ id: id, created: (new Date()).getTime() }, req.body));
 
