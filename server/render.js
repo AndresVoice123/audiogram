@@ -12,12 +12,12 @@ function validate(req, res, next) {
     req.body.theme = JSON.parse(req.body.theme);
 
   } catch(e) {
-
+    console.log('este es el error xd', e);
     return res.status(500).send("Unknown settings error.");
 
   }
 
-  if (!req.file || !req.file.filename) {
+  if (!req.file || !req.file.filename && !req.body.s3Audio) {
     return res.status(500).send("No valid audio received.");
   }
 
