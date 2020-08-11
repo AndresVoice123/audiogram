@@ -44,13 +44,14 @@ if (serverSettings.maxUploadSize) {
   };
 }
 
-const processRawMaterial = (req, res, next) => {
+var processRawMaterial = function (req, res, next)  {
+    console.log('esta es la petición que llega', req);
     if (!req.body.s3Audio) {
       return multer(fileOptions).single("audio");
     } else {
       return next();
     }
-}
+};
 
 // On submission, check upload, validate input, and start generating a video
 app.post("/submit/", [processRawMaterial, render.validate, render.route]);
