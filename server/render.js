@@ -9,7 +9,9 @@ function validate(req, res, next) {
 
   try {
     console.log('este es el cuerpo', req.body);
-    req.body.theme = JSON.parse(req.body.theme);
+    if(!req.body.s3Audio) {
+      req.body.theme = JSON.parse(req.body.theme);
+    }
 
   } catch(e) {
     console.log('este es el error xd', e);
