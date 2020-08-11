@@ -1,7 +1,8 @@
 var fs = require("fs"),
     path = require("path"),
     Canvas = require("canvas"),
-    getRenderer = require("../renderer/");
+    getRenderer = require("../renderer/")
+    transports = require("../lib/transports/");
 
 function initializeCanvas(theme, cb) {
 
@@ -11,6 +12,10 @@ function initializeCanvas(theme, cb) {
   if (!theme.backgroundImage) {
     return cb(null, renderer);
   }
+
+  if (theme.backgroundImage) {
+    transports.downloadAudio("images/" + theme.backgroundImage, path.join(__dirname, "..", "settings", "backgrounds", theme.backgroundImage));
+  } 
 
   // Load background image from file (done separately so renderer code can work in browser too)
   fs.readFile(path.join(__dirname, "..", "settings", "backgrounds", theme.backgroundImage), function(err, raw){
