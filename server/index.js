@@ -21,10 +21,7 @@ var app = express();
 
 app.use(compression());
 app.use(logger.morgan());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.text());
-app.use(bodyParser.json({ type: 'application/json' }));
+
 
 // Options for where to store uploaded audio and max size
 var fileOptions = {
@@ -50,7 +47,7 @@ if (serverSettings.maxUploadSize) {
 }
 
 // On submission, check upload, validate input, and start generating a video
-app.post("/submit/", [render.validate, render.route]);
+app.post("/submit/", [multer(fileOptions).single("audio"), render.validate, render.route]);
 
 // If not using S3, serve videos locally
 if (!serverSettings.s3Bucket) {

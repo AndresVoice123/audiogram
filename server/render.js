@@ -8,7 +8,7 @@ var serverSettings = require("../lib/settings/"),
 function validate(req, res, next) {
 
   try {
-
+    console.log('este es el cuerpo', req.body);
     req.body.theme = JSON.parse(req.body.theme);
 
   } catch(e) {
