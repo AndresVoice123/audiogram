@@ -44,17 +44,8 @@ if (serverSettings.maxUploadSize) {
   };
 }
 
-var processRawMaterial = function (req, res, next)  {
-    console.log('esta es la petición que llega', req);
-    if (!req.body.s3Audio) {
-      return multer(fileOptions).single("audio");
-    } else {
-      return next();
-    }
-};
-
 // On submission, check upload, validate input, and start generating a video
-app.post("/submit/", [processRawMaterial, render.validate, render.route]);
+app.post("/submit/", [multer(fileOptions).single("audio"), render.validate, render.route]);
 
 // If not using S3, serve videos locally
 if (!serverSettings.s3Bucket) {
