@@ -11,7 +11,8 @@ var path = require("path"),
     initializeCanvas = require("./initialize-canvas.js"),
     drawFrames = require("./draw-frames.js"),
     combineFrames = require("./combine-frames.js"),
-    trimAudio = require("./trim.js");
+    trimAudio = require("./trim.js")
+    request = require('request');
 
 function Audiogram(id) {
 
@@ -179,10 +180,25 @@ Audiogram.prototype.render = function(cb) {
   q.defer(rimraf, this.dir);
 
   // Final callback, results in a URL where the finished video is accessible
-  q.await(function(err){
+  q.await( async function(err) {
 
     if (!err) {
       self.set("url", transports.getURL(self.id));
+      const options = {
+        url: `http://localhost:8888/jobs`,
+        json: {
+          job_name: "UploadSampleVideo",
+          params:
+          [
+            {
+              sampleId: theme.sampleId,
+              videoUrl:  self.url
+            }
+          ]
+        },
+      };
+      console.log('estas son las opciones papuh', options);
+      await request.post(options);
     }
 
     logger.debug(self.profiler.print());
