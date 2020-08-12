@@ -185,7 +185,7 @@ Audiogram.prototype.render = function(cb) {
     if (!err) {
       self.set("url", transports.getURL(self.id));
       const options = {
-        url: `http://localhost:8888/jobs`,
+        url: `docker.for.mac.localhost:8888/jobs`,
         json: {
           job_name: "UploadSampleVideo",
           params:
