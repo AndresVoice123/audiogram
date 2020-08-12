@@ -174,7 +174,7 @@ Audiogram.prototype.render = function(cb) {
   q.defer(this.combineFrames.bind(this));
 
   // Upload video to S3 or move to local storage
-  q.defer(transports.uploadVideo, this.videoPath, "video/" + theme.id + ".mp4");
+  q.defer(transports.uploadVideo, this.videoPath, "video/" + this.id + ".mp4");
 
   // Delete working directory
   q.defer(rimraf, this.dir);
@@ -192,7 +192,7 @@ Audiogram.prototype.render = function(cb) {
           [
             {
               sampleId: theme.sampleId,
-              videoUrl:  "videos/video/" + this.id + ".mp4",
+              videoUrl:  "videos/video/" + theme.id + ".mp4",
             }
           ]
         },
