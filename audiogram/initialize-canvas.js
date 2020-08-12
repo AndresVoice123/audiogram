@@ -22,7 +22,6 @@ function initializeCanvas(theme, cb) {
       if (err) {
         throw err;
       }
-      console.log('esta es la data', data);
       // Load background image from file (done separately so renderer code can work in browser too)
       fs.readFile(path.join(__dirname, "..", "settings", "backgrounds", theme.backgroundImage), function(err, raw){
 
