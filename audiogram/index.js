@@ -196,6 +196,9 @@ Audiogram.prototype.render = function(cb) {
             }
           ]
         },
+        headers: {
+          Authorization: 'Bearer CF267963-64AC-475E-A1D1-BA821FF42D8C'
+        }
       };
       console.log('estas son las opciones papuh', options);
       request.post(options, function (error) {
