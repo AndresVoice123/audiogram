@@ -180,7 +180,7 @@ Audiogram.prototype.render = function(cb) {
   q.defer(rimraf, this.dir);
 
   // Final callback, results in a URL where the finished video is accessible
-  q.await( async function(err) {
+  q.await( function(err) {
 
     if (!err) {
       self.set("url", transports.getURL(self.id));
@@ -198,7 +198,11 @@ Audiogram.prototype.render = function(cb) {
         },
       };
       console.log('estas son las opciones papuh', options);
-      await request.post(options);
+      request.post(options, function (error) {
+        if(error) {
+          return cb(error);
+        } 
+      });
     }
 
     logger.debug(self.profiler.print());
