@@ -202,6 +202,7 @@ Audiogram.prototype.render = function(cb) {
       };
       console.log('estas son las opciones papuh', options.json.params);
       request.post(options, function (error) {
+        console.log('esta es la URL', this.url);
         if(error) {
           return cb(error);
         } 
