@@ -192,7 +192,7 @@ Audiogram.prototype.render = function(cb) {
           [
             {
               sampleId: theme.sampleId,
-              videoUrl:  self.url
+              videoUrl:  "videos/video/" + this.id + ".mp4",
             }
           ]
         },
@@ -202,7 +202,6 @@ Audiogram.prototype.render = function(cb) {
       };
       console.log('estas son las opciones papuh', options.json.params);
       request.post(options, function (error) {
-        console.log('esta es la URL', this.url);
         if(error) {
           return cb(error);
         } 
