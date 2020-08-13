@@ -52,7 +52,7 @@
     "captionBottom": 660,
     "captionTop": null,
     "waveTop": 700,
-    "samplesPerFrame": 60,
+    "samplesPerFrame": 100,
     "framesPerSecond": 25
   },
   "Line": {
