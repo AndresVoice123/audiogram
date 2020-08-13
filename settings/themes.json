@@ -51,8 +51,8 @@
     "captionRight": 640,
     "captionBottom": 660,
     "captionTop": null,
-    "waveTop": 680,
-    "waveBottom": 480,
+    "waveTop": 640,
+    "waveBottom": 500,
     "samplesPerFrame": 100,
     "framesPerSecond": 25
   },
