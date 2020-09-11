@@ -6,20 +6,17 @@ var serverSettings = require("../lib/settings/"),
     transports = require("../lib/transports");
 
 function validate(req, res, next) {
-
+  
   try {
-    console.log('este es el cuerpo', req.body);
-    if(!(req.body.theme.audioUrl && req.body.theme.backgroundImageUrl)) {
+    if(!(typeof req.body.theme === 'object')) {
       req.body.theme = JSON.parse(req.body.theme);
     }
 
   } catch(e) {
-    console.log('este es el error xd', e);
     return res.status(500).send("Unknown settings error.");
-
   }
 
-  if ( (!req.file || !req.file.filename) && !req.body.s3Audio) {
+  if ( (!req.file || !req.file.filename) && !req.body.theme.audioUrl) {
     return res.status(500).send("No valid audio received.");
   }
 
