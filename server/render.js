@@ -16,7 +16,7 @@ function validate(req, res, next) {
     return res.status(500).send("Unknown settings error.");
   }
 
-  if ( (!req.file || !req.file.filename) && !req.body.theme.audioUrl) {
+  if (!req.file || !req.file.filename) {
     return res.status(500).send("No valid audio received.");
   }
 
@@ -35,7 +35,7 @@ function validate(req, res, next) {
 
 function route(req, res) {
   var id = req.body.theme.id ? req.body.theme.id : req.file.destination.split(path.sep).pop();
-  if(!req.body.s3Audio) {
+  if(!req.body.theme.audioUrl) {
     transports.uploadAudio(path.join(req.file.destination, "audio"), "audio/" + id,function(err) {
       if (err) {
         throw err;
@@ -52,8 +52,6 @@ function addJob(req, res, id) {
   // Queue up the job with a timestamp
   transports.addJob(_.extend({ id: id, created: (new Date()).getTime() }, req.body));
 
-  res.json({ id: id });
-
   // If there's no separate worker, spawn one right away
   if (!serverSettings.worker) {
 
@@ -65,7 +63,15 @@ function addJob(req, res, id) {
       cwd: path.join(__dirname, ".."),
       env: _.extend({}, process.env, { SPAWNED: true })
     });
+  }
 
+  if (res) {
+    res.json({ id: id });
+  } else {
+    return {
+      status: 'Added to Queue',
+      id,
+    }
   }
 }
 

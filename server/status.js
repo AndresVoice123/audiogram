@@ -34,7 +34,7 @@ module.exports = function(req, res) {
           hash[key] = +hash[key];
         }
       });
-
+      if(!res) return hash;
       res.json(hash);
 
     });
