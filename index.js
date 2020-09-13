@@ -19,6 +19,7 @@ var generateSoundwaveVideo = function (theme) {
     var interval = setInterval(function() { 
         if (hash === 'ready') {
             clearInterval(interval);
+            return hash;
         } else {
             hash = status(newReq, null);
         }

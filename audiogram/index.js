@@ -200,7 +200,6 @@ Audiogram.prototype.render = function(cb) {
           Authorization: 'Bearer CF267963-64AC-475E-A1D1-BA821FF42D8C'
         }
       };
-      console.log('estas son las opciones papuh', options.json.params);
       request.post(options, function (error) {
         if(error) {
           return cb(error);
