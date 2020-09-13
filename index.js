@@ -1,6 +1,6 @@
 // Routes and middleware
 var render = require("./server/render.js"),
-    status = require("./status.js");
+    status = require("./server/status.js");
 
 
 var generateSoundwaveVideo = function (theme) {
@@ -16,15 +16,20 @@ var generateSoundwaveVideo = function (theme) {
         },
     };
     var hash = status(newReq, null);
-    var interval = setInterval(function() { 
-        if (hash === 'ready') {
-            clearInterval(interval);
-            return hash;
-        } else {
-            hash = status(newReq, null);
-        }
-        console.log('este es el pinchi status prrrrro', hash);
-    }, 3000);
+
+    var promise = new Promise( function (resolve, reject) {
+        var interval = setInterval(function() { 
+            if (hash === 'ready') {
+                clearInterval(interval);
+                resolve(hash);
+            } else {
+                hash = status(newReq, null);
+            }
+            console.log('este es el pinchi status prrrrro', hash);
+        }, 3000);
+    });
+
+    return promise;
 };
 
 const saveVideo = () => {};
