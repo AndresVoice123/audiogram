@@ -10,11 +10,13 @@ var generateSoundwaveVideo = function (theme) {
         },
     };
     var response = render.route(req, null);
+    console.log('esta es la respuesta', response);
     var newReq = {
         params: {
             id: response.id,
         },
     };
+    console.log('este es el new rq papuh de papuhs', newReq);
     var hash = status(newReq, null);
 
     var promise = new Promise( function (resolve, reject) {
