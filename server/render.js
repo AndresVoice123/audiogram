@@ -44,6 +44,10 @@ function route(req, res) {
     });
   } else {
     addJob(req,res, id);
+    return {
+      status: 'Added to Queue',
+      id,
+    }
   }
 
 };
@@ -67,12 +71,7 @@ function addJob(req, res, id) {
 
   if (res) {
     res.json({ id: id });
-  } else {
-    return {
-      status: 'Added to Queue',
-      id,
-    }
-  }
+  } 
 }
 
 module.exports = {
