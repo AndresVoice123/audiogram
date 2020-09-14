@@ -22,7 +22,8 @@ module.exports = function(req, res) {
       });
 
       if (position >= 0) {
-        return res.json({ status: "queued", position: position });
+        var response = { status: "queued", position: position };
+        return res ? res.json(response) : response;
       }
 
       if (hash === null) {
