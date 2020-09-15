@@ -11,8 +11,7 @@ var path = require("path"),
     initializeCanvas = require("./initialize-canvas.js"),
     drawFrames = require("./draw-frames.js"),
     combineFrames = require("./combine-frames.js"),
-    trimAudio = require("./trim.js")
-    request = require('request');
+    trimAudio = require("./trim.js");
 
 function Audiogram(id) {
 
@@ -180,31 +179,10 @@ Audiogram.prototype.render = function(cb) {
   q.defer(rimraf, this.dir);
 
   // Final callback, results in a URL where the finished video is accessible
-  q.await( function(err) {
+  q.await(function(err){
 
     if (!err) {
       self.set("url", transports.getURL(self.id));
-      const options = {
-        url: `http://docker.for.mac.localhost:8888/jobs`,
-        json: {
-          job_name: "UploadSampleVideo",
-          params:
-          [
-            {
-              sampleId: theme.sampleId,
-              videoUrl:  "videos/video/" + theme.id + ".mp4",
-            }
-          ]
-        },
-        headers: {
-          Authorization: 'Bearer CF267963-64AC-475E-A1D1-BA821FF42D8C'
-        }
-      };
-      request.post(options, function (error) {
-        if(error) {
-          return cb(error);
-        } 
-      });
     }
 
     logger.debug(self.profiler.print());

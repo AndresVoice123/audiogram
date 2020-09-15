@@ -40,21 +40,16 @@
   },
   "Bars": {
     "pattern": "bars",
-    "foregroundColor": "#37baff"
+    "foregroundColor": "#d84a4a"
   },
   "Rounded bars with bottom left text": {
-    "pattern": "bars",
-    "foregroundColor": "#37baff",
-    "backgroundImage": "sample.png",
+    "pattern": "roundBars",
+    "foregroundColor": "#d84a4a",
     "captionAlign": "left",
     "captionLeft": 60,
     "captionRight": 640,
     "captionBottom": 660,
-    "captionTop": null,
-    "waveTop": 600,
-    "waveBottom": 500,
-    "samplesPerFrame": 100,
-    "framesPerSecond": 25
+    "captionTop": null
   },
   "Line": {
     "backgroundColor": "#edc951",

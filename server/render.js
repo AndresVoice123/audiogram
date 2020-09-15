@@ -11,7 +11,7 @@ function validate(req, res, next) {
     if(!(typeof req.body.theme === 'object')) {
       req.body.theme = JSON.parse(req.body.theme);
     }
-
+    
   } catch(e) {
     return res.status(500).send("Unknown settings error.");
   }

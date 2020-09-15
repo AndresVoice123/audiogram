@@ -1,42 +1,48 @@
 // Routes and middleware
 var render = require("./server/render.js"),
-    status = require("./server/status.js");
+    promiseStatus = require("./server/promiseStatus.js");
 
+module.exports = class Audiogram {
+    constructor(envVariables) {
+        Object.keys(envVariables).forEach(function(key) {
+            process.env[key] = envVariables[key];
+        });
+    }
 
-var generateSoundwaveVideo = function (theme) {
-    var req = {
-        body: {
-            theme,
-        },
+    async generateSoundwaveVideo(theme) { 
+        var req = {
+            body: {
+                theme,
+            },
+        };
+    
+        var response = render.route(req, null);
+        var newReq = {
+            params: {
+                id: response.id,
+            },
+        };
+        var hash = await promiseStatus(newReq, null);
+    
+        var promise = new Promise( async function (resolve, reject) {
+            var interval = setInterval(async function() { 
+                try {
+                    console.log('este es el hash recibido', hash);
+                    if (hash.status === 'ready') {
+                        clearInterval(interval);
+                        resolve(hash.status);
+                    } else if (hash.status === 'error') {
+                        clearInterval(interval);
+                        reject(hash.error);
+                    } else {
+                        hash = await promiseStatus(newReq, null);
+                    }
+                }
+                catch(err) {
+                    throw err;
+                }
+            }, 3000);
+        });
+        return promise;
     };
-    var response = render.route(req, null);
-    console.log('esta es la respuesta', response);
-    var newReq = {
-        params: {
-            id: response.id,
-        },
-    };
-    console.log('este es el new rq papuh de papuhs', newReq);
-    var hash = status(newReq, null);
-
-    var promise = new Promise( function (resolve, reject) {
-        var interval = setInterval(function() { 
-            if (hash === 'ready') {
-                clearInterval(interval);
-                resolve(hash);
-            } else {
-                hash = status(newReq, null);
-            }
-            console.log('este es el pinchi status prrrrro', hash);
-        }, 3000);
-    });
-
-    return promise;
-};
-
-const saveVideo = () => {};
-
-module.exports = {
-    generateSoundwaveVideo: generateSoundwaveVideo,
-    saveVideo: saveVideo,
-};
+}

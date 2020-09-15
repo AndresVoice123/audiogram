@@ -39,7 +39,7 @@ function render(job) {
   audiogram.settings = job;
 
   audiogram.render(function(err){
-
+    console.log('ocurrió un error perrito', err);
     if (err) {
       audiogram.status("error");
       audiogram.set("error", err.toString());
